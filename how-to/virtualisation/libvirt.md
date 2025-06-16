@@ -175,6 +175,10 @@ There are various options to those methods, but the entry point for all of them 
 
 Some useful documentation on the constraints and considerations of live migration can be found at the [Ubuntu Wiki](https://wiki.ubuntu.com/QemuKVMMigration).
 
+## CPU model and capability
+
+It is not practical to have a database listing all known CPU models, so libvirt has a small list of baseline CPU model names. It chooses the one that shares the greatest number of CPUID bits with the actual host physical machine CPU and then lists the remaining bits as named features. Notice that libvirt does not display which features the baseline CPU contains. This might seem like a flaw at first, but as will be explained in this section, it is not actually necessary to know this information.
+
 ## Device passthrough/hotplug
 
 If you want to always pass through a device rather than using the hotplugging method described here, add the XML content of the device to your static guest XML representation via `virsh edit <guestname>`. In that case, you won't need to use *attach/detach*. There are different kinds of passthrough, and the types available to you depend on your hardware and software setup.
